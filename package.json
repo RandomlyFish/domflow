@@ -1,0 +1,36 @@
+{
+  "name": "domflow",
+  "version": "1.0.1",
+  "description": "A Node framework for creating html structure and layout in javascript",
+  "main": "index.js",
+  "dependencies": {
+    "@randomlyfish/utils": "^0.1.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --entry ./example/example.js --output-filename ./example/dist/bundle.js --mode=development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RandomlyFish/domflow.git"
+  },
+  "keywords": [
+    "client",
+    "layout",
+    "design",
+    "structure",
+    "framework",
+    "html",
+    "css"
+  ],
+  "author": "randomlyfish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RandomlyFish/domflow/issues"
+  },
+  "homepage": "https://github.com/RandomlyFish/domflow#readme"
+}

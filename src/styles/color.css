@@ -1,0 +1,131 @@
+body {
+    --color-foreground-light: #ffffff;
+    --color-foreground: #e9e9e9;
+    --color-foreground-dark: #b3b3b3;
+
+    --color-background-light: #23292e;
+    --color-background: #1a2126;
+    --color-background-dark: #1d2225;
+
+    --color-primary-light: #ec082e;
+    --color-primary: #d80c45;
+    --color-primary-dark: #bd102d;
+
+    --color-secondary-light: #aa356f;
+    --color-secondary: #891c53;
+    --color-secondary-dark: #7a1b4b;
+
+    --color-accent-light: #ffe5bc;
+    --color-accent: #f3d097;
+    --color-accent-dark: #ecbc6f;
+}
+
+/* Element color */
+.dom-element.color-none {
+    color: transparent;
+}
+
+.dom-element.color-foreground {
+    color: var(--color-foreground);
+}
+.dom-element.color-foreground-light {
+    color: var(--color-foreground-light);
+}
+.dom-element.color-foreground-dark {
+    color: var(--color-foreground-dark);
+}
+
+.dom-element.color-background {
+    color: var(--color-background);
+}
+.dom-element.color-background-light {
+    color: var(--color-background-light);
+}
+.dom-element.color-background-dark {
+    color: var(--color-background-dark);
+}
+
+.dom-element.color-primary {
+    color: var(--color-primary);
+}
+.dom-element.color-primary-light {
+    color: var(--color-primary-light);
+}
+.dom-element.color-primary-dark {
+    color: var(--color-primary-dark);
+}
+
+.dom-element.color-secondary {
+    color: var(--color-secondary);
+}
+.dom-element.color-secondary-light {
+    color: var(--color-secondary-light);
+}
+.dom-element.color-secondary-dark {
+    color: var(--color-secondary-dark);
+}
+
+.dom-element.color-accent {
+    color: var(--color-accent);
+}
+.dom-element.color-accent-light {
+    color: var(--color-accent-light);
+}
+.dom-element.color-accent-dark {
+    color: var(--color-accent-dark);
+}
+
+/* Element background color */
+.dom-element.bg-color-none {
+    background-color: transparent;
+}
+
+.dom-element.bg-color-foreground {
+    background-color: var(--color-foreground);
+}
+.dom-element.bg-color-foreground-light {
+    background-color: var(--color-foreground-light);
+}
+.dom-element.bg-color-foreground-dark {
+    background-color: var(--color-foreground-dark);
+}
+
+.dom-element.bg-color-background {
+    background-color: var(--color-background);
+}
+.dom-element.bg-color-background-light {
+    background-color: var(--color-background-light);
+}
+.dom-element.bg-color-background-dark {
+    background-color: var(--color-background-dark);
+}
+
+.dom-element.bg-color-primary {
+    background-color: var(--color-primary);
+}
+.dom-element.bg-color-primary-light {
+    background-color: var(--color-primary-light);
+}
+.dom-element.bg-color-primary-dark {
+    background-color: var(--color-primary-dark);
+}
+
+.dom-element.bg-color-secondary {
+    background-color: var(--color-secondary);
+}
+.dom-element.bg-color-secondary-light {
+    background-color: var(--color-secondary-light);
+}
+.dom-element.bg-color-secondary-dark {
+    background-color: var(--color-secondary-dark);
+}
+
+.dom-element.bg-color-accent {
+    background-color: var(--color-accent);
+}
+.dom-element.bg-color-accent-light {
+    background-color: var(--color-accent-light);
+}
+.dom-element.bg-color-accent-dark {
+    background-color: var(--color-accent-dark);
+}

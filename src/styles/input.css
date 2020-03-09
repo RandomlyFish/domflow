@@ -1,0 +1,79 @@
+body {
+    --input-hover-filter: contrast(90%) brightness(120%);
+    --input-select-filter: contrast(90%) brightness(140%);
+}
+
+/* BUTTON */
+.dom-element button {
+    border: none;
+    cursor: pointer;
+}
+
+.dom-element button:hover {
+    outline: 0;
+    filter: var(--input-hover-filter);
+    transition: 0.15s;
+}
+
+.dom-element button:focus {
+    outline: 0;
+    filter: var(--input-select-filter);
+    transition: 0s;
+}
+
+/* TOGGLE */
+/* Hide default input */
+.dom-element .toggle input {
+    display: none;
+}
+
+/* Container and background */
+.dom-element .toggle {
+    --toggle-handle-color: var(--color-foreground);
+    --toggle-background-color: var(--color-foreground-dark);
+    --toggle-background-enabled-color: var(--color-secondary);
+
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+/* Background (Don't ask me why the selector is for the div inside it) */
+.dom-element .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-foreground-dark);
+    border-radius: 30px;
+    border: 2px solid #00000011;
+    transition: all 0.15s;
+}
+
+/* Toggle handle */
+.dom-element .slider:before {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: var(--toggle-handle-color);
+    border-radius: 25px;
+    transition: all 0.15s;
+    top: -2px;
+}
+
+/* Hover */
+.dom-element input:hover + .slider {
+    filter: var(--input-hover-filter);
+}
+
+/* On checked */
+.dom-element input:checked + .slider {
+    background-color: var(--toggle-background-enabled-color);
+}
+.dom-element input:checked + .slider:before {
+    transform: translateX(22px);
+}
