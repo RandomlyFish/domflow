@@ -507,6 +507,9 @@ class IoniconV4DomIcon extends DomIcon {
     }
 
     _updateIcon() {
+        if (this.icon === undefined || this.style === undefined) {
+            return;
+        }
         for (let c of this.htmlElement.classList) {
             if (StringUtil.includesAny(c, ["ion-md-", "ion-ios-", "ion-logo-"]) === true) {
                 this.htmlElement.classList.remove(c);
