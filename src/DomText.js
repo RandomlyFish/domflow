@@ -6,6 +6,8 @@ export default class DomText extends DomElement {
         super(htmlElement);
 
         this.colorClassPrefixes = ["color-"]; // TODO: extend color so that it uses the correct prefix
+
+        /** @type {"none" | "foreground" | "background" | "primary" | "secondary" | "accent"} */
         this.color = "foreground";
     }
 }
