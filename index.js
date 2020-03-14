@@ -10,4 +10,9 @@ require("./src/DomToggle");
 
 export {default as dom} from "./src/dom";
 export {default as IoniconsV4} from "./src/icon_fonts/ioniconsV4";
-export {default as Element} from "./src/refactor/DomElement";
+
+// Refactor
+export {default as Container} from "./src/refactor/DomElement";
+export {default as Button} from "./src/refactor/DomButton";
+export {default as Text} from "./src/refactor/DomText";
+export {default as IoniconsV4_2} from "./src/refactor/icon_fonts/ioniconsV4";

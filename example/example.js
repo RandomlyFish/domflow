@@ -1,6 +1,9 @@
 import dom from "../src/dom";
 import icons from "../src/icon_fonts/ioniconsV4";
 
+import {Container, Button, Text} from "../index"; // Use "domflow" instead of "../index"
+import {IoniconsV4_2 as Icon} from "../index";
+
 // Creates an element used to add some vertical distance between some elements
 function createSpacer() {
     return dom.container.create({height: "20px"});
@@ -10,10 +13,14 @@ function createSpacer() {
 const container = dom.container.create({width: "50%", height: "500px"}, () => {
 
     // A button with some text as a child
-    const button = dom.button.colorForeground.create("", {
+    /* const button = dom.button.colorForeground.create("", {
         height: "50px", width: "100px"
     }, () => {
         dom.text.colorBackground.create("Button");
+    }); */
+
+    const button = Button({height: "50px", width: "100px", color: "foreground"}, () => {
+        Text("Button", {color: "background"});
     });
 
     // Click handler for the button
@@ -21,7 +28,7 @@ const container = dom.container.create({width: "50%", height: "500px"}, () => {
         console.log("clicked button!");
     };
 
-    // A button with an icon
+    /* // A button with an icon
     dom.button.colorForeground.create("", {
         height: "50px", width: "100px"
     }, () => {
@@ -30,6 +37,14 @@ const container = dom.container.create({width: "50%", height: "500px"}, () => {
             fontSize: "20px"
         });
         // The icon's graphic can be updated after it have been created, same here, it shows all types of graphics when typing "icons.icons = "" "
+        icon.icon = "information-circle-outline";
+    }); */
+
+    // A button with an icon
+    Button({color: "foreground", width: "100px", height: "50px"}, () => {
+        // All icon names are listed when typing the string, so no need to memorize them
+        const icon = Icon("information-circle", {color: "background", size: "20px"});
+        // The icon can be changed after it have been created
         icon.icon = "information-circle-outline";
     });
 

@@ -9,7 +9,7 @@
 /** @typedef {number | "px" | "em" | "rem" | "%" | "vh" | "vw" | "vmin" | "vmax"} styleValueType */
 
 /**
- * @typedef {Object} styleType - A type with different style
+ * @typedef {Object} styleType - A type with different style properties
  * @property {colorsType} color - The color for the element
  * @property {shadeType} shade - The shade of the color for the element
  * @property {anchorType} anchor Affects the position of the element inside it's parent, x controls the horizontal position and y controls the vertical position

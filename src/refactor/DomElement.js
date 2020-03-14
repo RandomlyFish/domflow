@@ -1,5 +1,9 @@
-import dom from "../dom";
 import "./Types";
+import "../styles/styles.css";
+import "../styles/input.css";
+import "../styles/color.css";
+
+import dom from "../dom";
 import StringUtil from "@randomlyfish/utils/StringUtil";
 
 class DomElement {
@@ -45,7 +49,7 @@ class DomElement {
         this._addChildren(children); // TODO: Make these as functions on dom
         this._addToParent();
     }
-
+    
     /** @returns {HTMLDivElement} */
     _createHtmlElement() {
         const element = document.createElement("div");

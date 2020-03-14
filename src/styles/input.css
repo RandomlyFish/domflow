@@ -7,6 +7,8 @@ body {
 .dom-element button {
     border: none;
     cursor: pointer;
+    font-family : inherit;
+    vertical-align: top;
 }
 
 .dom-element button:hover {
