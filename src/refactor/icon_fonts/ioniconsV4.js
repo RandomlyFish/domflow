@@ -1,3 +1,5 @@
+// import "../../styles/icon_fonts/ionicons.min.css"; // TODO: See if this can be imported using: "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+
 import {DomIcon} from "../DomIcon";
 import test from "../DomIcon";
 import StringUtil from "@randomlyfish/utils/StringUtil";

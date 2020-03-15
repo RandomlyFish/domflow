@@ -13,7 +13,10 @@ export {default as IoniconsV4_old} from "./src/icon_fonts/ioniconsV4";
 
 // Refactor
 export {default as Container} from "./src/refactor/DomElement";
+export {default as Layer} from "./src/refactor/DomLayer";
+export {default as FlexContainer} from "./src/refactor/DomFlexContainer";
 export {default as Button} from "./src/refactor/DomButton";
+export {default as Toggle} from "./src/refactor/DomToggle";
 export {default as Text} from "./src/refactor/DomText";
 export {default as IoniconsV4} from "./src/refactor/icon_fonts/ioniconsV4";
 export {default as Jsdoc} from "./src/refactor/Types";

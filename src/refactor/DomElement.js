@@ -4,6 +4,7 @@ import "../styles/input.css";
 import "../styles/color.css";
 
 import dom from "../dom";
+import Point from "../types/Point";
 import StringUtil from "@randomlyfish/utils/StringUtil";
 
 class DomElement {
@@ -18,11 +19,22 @@ class DomElement {
             if (this.color === undefined || this.shade === undefined) {
                 return;
             }
+
             for (let c of this.htmlElement.classList) {
                 if (c.indexOf("color-") === 0 || c.indexOf("bg-color-") === 0) {
                     this.htmlElement.classList.remove(c);
                 }
             }
+            
+            if (StringUtil.includesAny(this.color, ["none", "foreground", "background", "primary", "secondary", "accent"]) === false) {
+                if (this.colorClassPrefixes[0] === "bg-color-") {
+                    this.htmlElement.style.backgroundColor = this.color;
+                } else {
+                    this.htmlElement.style.color = this.color;
+                }
+                return;
+            }
+
             let colorClass = this.colorClassPrefixes[0] + this.color;
             if (this.shade !== "normal") {
                 colorClass += "-" + this.shade;
@@ -50,6 +62,18 @@ class DomElement {
         this._addToParent();
     }
     
+    get anchor() {
+        return this._anchor;
+    }
+    set anchor(value) {
+        let parsedPoint = Point.parse(value);
+        if (this._anchor === undefined) {
+            this._anchor = new Point(parsedPoint.x, parsedPoint.y, this._applyAnchor.bind(this));
+        } else {
+            this._anchor.set(parsedPoint.x, parsedPoint.y);
+        }
+    }
+
     /** @returns {HTMLDivElement} */
     _createHtmlElement() {
         const element = document.createElement("div");
@@ -121,6 +145,37 @@ class DomElement {
                 onAssign(value);
             }
         });
+    }
+
+    _applyAnchor(value) {
+        const element = this.htmlElement;
+
+        element.style.left = "";
+        element.style.top = "";
+        element.style.transform = "";
+        element.classList.add("anchored");
+
+        const marginTop = parseFloat(element.style.marginTop) || 0;
+        const marginBottom = parseFloat(element.style.marginBottom) || 0;
+        const marginLeft = parseFloat(element.style.marginLeft) || 0;
+        const marginRight = parseFloat(element.style.marginRight) || 0;
+        const marginPaddingX = (marginLeft + marginRight) * value.x;
+        const marginPaddingY = (marginTop + marginBottom) * value.y;
+
+        if (value.x > 0) {
+            element.style.left = value.x * 100 + "%";
+            element.style.transform = "translateX(-" + element.style.left + ")";
+            if (marginPaddingX > 0) {
+                element.style.transform += "translateX(-" + marginPaddingX + "px)";
+            }
+        }
+        if (value.y > 0) {
+            element.style.top = value.y * 100 + "%";
+            element.style.transform += "translateY(-" + element.style.top + ")";
+            if (marginPaddingY > 0) {
+                element.style.transform += "translateY(-" + marginPaddingY + "px)";
+            }
+        }
     }
 }
 

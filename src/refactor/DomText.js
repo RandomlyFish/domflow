@@ -1,8 +1,8 @@
 import {DomElement} from "./DomElement";
 
 class DomText extends DomElement {
-    constructor(text, style, children) {
-        super(style, children);
+    constructor(text, style) {
+        super(style);
 
         this.colorClassPrefixes = ["color-"];
 
@@ -23,7 +23,7 @@ class DomText extends DomElement {
 }
 
 // Export it by default as function so that you don't need to use the new keyword
-/** @param {string} text @param {styleType} style @param {childrenType} children */
-export default (text = "", style = {}, children = []) => {
-    return new DomText(text, style, children);
+/** @param {string} text @param {styleType} style */
+export default (text = "", style = {}) => {
+    return new DomText(text, style);
 };
