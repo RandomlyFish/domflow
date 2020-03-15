@@ -24,7 +24,7 @@ Domflow is a library for node for creating html structure and layout in purely j
 ###### And rants...
 
 <details>
-<summary>**Layout and structure shouldn't be separated**</summary>
+<summary>Layout and structure shouldn't be separated</summary>
 
 By structure i mean a set of elements and by layout I mean the way those elements are layed out, such as if elements are supposed to be placed next to each other. These two aspects of a website are tightly coupled, yet when you use html and css you keep them in seperate
 files. This can make it difficult to get an overview of what your website will look like without going back and fourth between your html and css.
@@ -34,7 +34,7 @@ With domflow you create the structure and layout in one place, making it more cl
 
 
 <details>
-<summary>**Simple use of icons**</summary>
+<summary>Simple use of icons</summary>
 
 Let's say you're just using html and you want to use an icon font such as [ionicons](https://ionicons.com/v4/). You first have to include their css stylesheet in your html, then create an <i>i</i> element and give it the class "icon" as well as another class starting with "ion-md-" followed by the name of the icon you want to use. Given that they have 378‬ icons (not including the ios variants) you'll likely end up going back to their website whenever you want to include a new icon.
 
@@ -43,7 +43,7 @@ With domflow, you get various icon fonts built in and when using an icon element
 
 
 <details>
-<summary>**Names that makes sense**</summary>
+<summary>Names that makes sense</summary>
 
 In html, how do you create a button? that's simple, you just create a button. How about a slider? Well... You create an input element and set it's type attribute to "range". And what about a dropdown? Actually it's called a select element...
 
@@ -52,7 +52,7 @@ With domflow a button is a button, a slider is a slider and a dropdown is a drop
 
 
 <details>
-<summary>**Properties that always does something**</summary>
+<summary>Properties that always does something</summary>
 
 In css, there are plenty of properties that depend on other properties to actually do anything. Such as the top, left, bottom and right properties, used to move an element away from an edge. Those properties depend on the position property being set to either relative or absolute. So if the position property is not set, then those properties does nothing. This can lead to confusing situations that makes you wonder why something worked in one situation, but not another.
 
@@ -61,7 +61,7 @@ With domflow, every property that you set on an element, has an effect on it no 
 
 
 <details>
-<summary>**Reduced redundancy**</summary>
+<summary>Reduced redundancy</summary>
 
 With html and javascript if you want to create a button and give it a click handler, then you have to first add it to the html structure. Then in the javascript you have to use document.querySelector to get access to that button so that you then can attach your handler to it.
 
@@ -70,6 +70,7 @@ With domflow you can just create the button and attach the handler on the next l
 
 
 <br/>
+
 ## Prerequisites
 
 This is a node module, so you need [nodejs](https://nodejs.org)
@@ -78,6 +79,7 @@ If you haven't used node before, I would highly recommend looking for some tutor
 
 
 <br/>
+
 ## Getting started
 
 Start by initializing the node project by running the following command in the terminal:
@@ -100,6 +102,7 @@ A bundler is also required to use this module, I would recommend [webpack](https
 
 
 <br/>
+
 #### Webpack
 
 You will also need a style and css loaded as the module uses some css for it's components.
@@ -140,6 +143,7 @@ module.exports = {
 ```
 
 <br/>
+
 #### index.html
 
 Open the html file and add:
@@ -160,6 +164,7 @@ Open the html file and add:
 ```
 
 <br/>
+
 #### index.js
 
 Add the following to index.js:
@@ -188,6 +193,7 @@ new class Index {
 ```
 
 <br/>
+
 #### package.json
 
 Below the "test" script in package.json, add:
@@ -206,9 +212,11 @@ npm run build
 ## Examples
 
 <br/>
+
 ### Nested containers
 
 <br/>
+
 ##### Without domflow (html, css):
 ``` html
 <div id="parent">
@@ -228,6 +236,7 @@ npm run build
 ```
 
 <br/>
+
 ##### Without domflow (javascript only):
 ``` javascript
 const parent = document.createElement("div");
@@ -252,9 +261,11 @@ Container({width: "500px", height: "200px"}, () => {
 ```
 
 <br/>
+
 ### Button
 
 <br/>
+
 ##### Without domflow (html, css, javascript):
 
 ``` html
@@ -274,7 +285,6 @@ button.onclick = () => {
 ```
 <br/>
 
-
 ##### Without domflow (javascript only):
 ``` javascript
 const button = document.createElement("button");
@@ -286,7 +296,6 @@ button.onclick = () => {
 }
 ```
 <br/>
-
 
 ##### Domflow:
 ```javascript
