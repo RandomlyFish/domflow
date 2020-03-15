@@ -1,8 +1,8 @@
 import dom from "../src/dom";
 import icons from "../src/icon_fonts/ioniconsV4";
 
-import {Container, Button, Text} from "../index"; // Use "domflow" instead of "../index"
-import {IoniconsV4_2 as Icon} from "../index";
+import {Jsdoc, Container, Button, Text} from "../index"; // Use "domflow" instead of "../index"
+import {IoniconsV4 as Icon} from "../index";
 
 // Creates an element used to add some vertical distance between some elements
 function createSpacer() {
@@ -19,9 +19,7 @@ const container = dom.container.create({width: "50%", height: "500px"}, () => {
         dom.text.colorBackground.create("Button");
     }); */
 
-    const button = Button({height: "50px", width: "100px", color: "foreground"}, () => {
-        Text("Button", {color: "background"});
-    });
+    const button = Button("Button", {height: "50px", width: "100px", color: "foreground"});
 
     // Click handler for the button
     button.onClick = () => {
@@ -41,7 +39,7 @@ const container = dom.container.create({width: "50%", height: "500px"}, () => {
     }); */
 
     // A button with an icon
-    Button({color: "foreground", width: "100px", height: "50px"}, () => {
+    Button("", {color: "foreground", width: "100px", height: "50px"}, () => {
         // All icon names are listed when typing the string, so no need to memorize them
         const icon = Icon("information-circle", {color: "background", size: "20px"});
         // The icon can be changed after it have been created
