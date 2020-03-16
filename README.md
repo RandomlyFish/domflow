@@ -19,17 +19,16 @@ Domflow is a library for node for creating html structure and layout in purely j
 <br/>
 
 ## Goals
-###### And rants...
 
 <details>
-<summary>Layout and structure shouldn't be separated</summary>
+<summary>Layout and structure in one</summary>
 
 <br/>
-By structure i mean a set of elements and by layout I mean the way those elements are layed out, such as if elements are supposed to be placed next to each other. These two aspects of a website are tightly coupled, yet when you use html and css you keep them in seperate
-files. This can make it difficult to get an overview of what your website will look like without going back and fourth between your html and css.
+Structure, such as a page with two images and layout, such as placing those two images next to eachother, are two aspects of designing a website that are tightly coupled. You can't create a layout without also having the appropriate structure.
+<br/>
+<br/>
 
-
-With domflow you create the structure and layout in one place, making it more clear how your website will behave.
+With domflow, you create both the structure and layout for your webapps in one single place, making it more clear how everything will behave.
 
 <br/>
 </details>
@@ -39,35 +38,28 @@ With domflow you create the structure and layout in one place, making it more cl
 <summary>Simple use of icons</summary>
 
 <br/>
-Let's say you're just using html and you want to use an icon font such as [ionicons](https://ionicons.com/v4/). You first have to include their css stylesheet in your html, then create an <i>i</i> element and give it the class "icon" as well as another class starting with "ion-md-" followed by the name of the icon you want to use. Given that they have 378‬ icons (not including the ios variants) you'll likely end up going back to their website whenever you want to include a new icon.
+Icons can make a big difference in making your design more interesting and help with effectively convey information to your users.
+<br/>
+<br/>
 
+Domflow comes bundled with [Ionicons version 4](https://ionicons.com/v4/) and has built in auto complete for all it's various icons, so that you can spend more time implementing icons, and less time looking for them.
+<br/>
+<br/>
 
-With domflow, you get various icon fonts built in and when using an icon element it lists all available icons, so there's no need to check their website if you simply want to check if they have an icon with an airplane.
+There are more icon fonts to come.
 
 <br/>
 </details>
 
 <details>
-<summary>Names that makes sense</summary>
+<summary>Clear names</summary>
 
 <br/>
-In html, how do you create a button? that's simple, you just create a button. How about a slider? Well... You create an input element and set it's type attribute to "range". And what about a dropdown? Actually it's called a select element...
-
-
-With domflow a button is a button, a slider is a slider and a dropdown is a dropdown.
-
+Looking at the structure for your site, it should be clear what everything does, just by looking at the names of the elements.
 <br/>
-</details>
-
-
-<details>
-<summary>Properties that always does something</summary>
-
 <br/>
-In css, there are plenty of properties that depend on other properties to actually do anything. Such as the top, left, bottom and right properties, used to move an element away from an edge. Those properties depend on the position property being set to either relative or absolute. So if the position property is not set, then those properties does nothing. This can lead to confusing situations that makes you wonder why something worked in one situation, but not another.
 
-
-With domflow, every property that you set on an element, has an effect on it no matter what.
+With domflow, instead of going with the names that you'll find in html markup such as div, p, and input. We went with names that are more self explanatory, such as container, text and slider.
 
 <br/>
 </details>
@@ -77,10 +69,25 @@ With domflow, every property that you set on an element, has an effect on it no 
 <summary>Reduced redundancy</summary>
 
 <br/>
-With html and javascript if you want to create a button and give it a click handler, then you have to first add it to the html structure. Then in the javascript you have to use document.querySelector to get access to that button so that you then can attach your handler to it.
+Having to write extra code just to accomplish something that should be very basic, is not ideal.
+<br/>
+<br/>
+
+With domflow, there is no need to use things like document.querySelector to access elements, such as buttons. Instead you can just assign your buttons to variables in the same place that you create them.
+
+<br/>
+</details>
 
 
-With domflow you can just create the button and attach the handler on the next line.
+<details>
+<summary>Flexibilty of workflow</summary>
+
+<br/>
+Given that every developer likes doing things their own ways, it's important that you don't feel you're forced into using a strict workflow.
+<br/>
+<br/>
+
+With domflow, it's up to you how you want to structure things. You can keep all your elements in one big structure, you can split it up into functions that creates the seperate parts or even classes to make parts more reusable and extendable.
 
 <br/>
 </details>
@@ -188,4 +195,3 @@ button.onClick = () => { // note that domflow uses camel casing
 	console.log("Button clicked");
 }
 ```
-<br/>
