@@ -1,9 +1,23 @@
-import {DomElement, DomElementBuilder} from "./DomElement";
+import {DomElement} from "./DomElement";
 
-export default class DomToggle extends DomElement {
+class DomToggle extends DomElement {
+    constructor(style, children) {
+        super(style, children);
 
-    constructor(htmlElements) {
-        super(htmlElements.label);
+        /** @type {function} The click handler for the element, passes a boolean to the function based on the state */
+        this.onClick = style.onClick;
+
+        /** @type {boolean} The state of the toggle, changing this does not trigger the onClick handler */
+        this.checked = false;
+        this._setter(this, "checked", value => {
+            this.checkbox.checked = value;
+        });
+
+        this.checkbox.onchange = (e) => {
+            if (this.onClick !== undefined) {
+                this.onClick(this.checkbox.checked);
+            }
+        };
 
         // Deselects the button after click
         this.htmlElement.addEventListener("mouseup", () => {
@@ -15,48 +29,29 @@ export default class DomToggle extends DomElement {
         });
     }
 
-    get onClick() {
-        return this["_" + "onClick"];
-    }
-    set onClick(value) {
-        this.htmlElement.removeEventListener("click", this["_" + "onClick"]);
-        this["_" + "onClick"] = value;
-        this.htmlElement.addEventListener("click", value);
-    }
-}
-
-class DomToggleBuilder extends DomElementBuilder {
-
-    constructor() {
-        super();
-        // The type of _domElement has to be updated, even though _createElement returns the correct type
-        /** @type {DomToggle} */
-        this._domElement;
-    }
-
-    _createElement() {
+    /** @returns {HTMLLabelElement} */
+    _createHtmlElement() {
         const htmlElement = document.createElement("label");
+        htmlElement.classList.add("dom-element");
         htmlElement.classList.add("toggle");
 
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         
+        this.checkbox = checkbox;
+
         const slider = document.createElement("span");
         slider.classList.add("slider");
 
         htmlElement.appendChild(checkbox);
         htmlElement.appendChild(slider);
 
-        return new DomToggle({label: htmlElement});
-    }
-
-    /** @returns {DomToggle} */
-    create(style = {}) {
-        return super.create(style);
+        return htmlElement;
     }
 }
 
-export {
-    DomToggle,
-    DomToggleBuilder
-}
+// Export it by default as function so that you don't need to use the new keyword
+/** @param {styleType} style @param {childrenType} children */
+export default (style = {}, children = []) => {
+    return new DomToggle(style, children);
+};

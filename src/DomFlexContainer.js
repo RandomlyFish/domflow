@@ -1,136 +1,96 @@
-import {DomElement, DomElementBuilder} from "./DomElement";
-import Enum from "./types/Enum";
+import {DomElement} from "./DomElement";
 
-export default class DomFlexContainer extends DomElement {
+class DomFlexContainer extends DomElement {
+    constructor(style, children) {
+        super(style, children);
 
-    constructor(htmlElement) {
-        super(htmlElement);
+        this.htmlElement.style.display = "flex";
 
-        /** @type {"default" | "row" | "column"} */
-        this.direction = "default";
-
-        /** @type {"default" | "reverse"} */
-        this.order = "default";
-
-        /** @type {"default" | "start" | "center" | "end"} */
-        this.justify = "default";
-
-        /** @type {"default" | "between" | "around" | "evenly"} */
-        this.space = "default";
-
-        /** @type {"default" | "start" | "center" | "end"} */
-        this.align = "default";
-
-        const updateDirection = (direction, order) => {
-            if (direction === "" && order === "") {
+        const updateDirection = () => {
+            if (this.direction === "row" && this.order === "default") {
                 this.htmlElement.style.flexDirection = "";
                 return;
             }
-            let directionValue = direction || "row";
-            if (order !== "") {
-                directionValue += "-" + order;
+            let directionValue = this.direction || "row";
+            if (this.order !== "default") {
+                directionValue += "-" + this.order;
             }
             this.htmlElement.style.flexDirection = directionValue;
         }
 
-        const directionEnum = new Enum(this, "direction", {"default": "", "row": "row", "column": "column"}, value => {
-            updateDirection(value, orderEnum.value);
-        });
+        /** @type {domFlexContainerDirectionType} */
+        this.direction = "row";
 
-        const orderEnum = new Enum(this, "order", {"default": "", "reverse": "reverse"}, value => {
-            updateDirection(directionEnum.value, value);
-        });
+        /** @type {domFlexContainerOrderType} */
+        this.order = "default";
 
-        new Enum(this, "justify", {"default": "", "start": "flex-start", "center": "center", "end": "flex-end"}, value => {
-            if (this.space !== "default") {
+        /** @type {domFlexContainerJustifyType} */
+        this.justify = "start";
+
+        /** @type {domFlexContainerSpaceType} */
+        this.space = "default";
+
+        /** @type {domFlexContainerAlignType} */
+        this.align = "start";
+
+        this._setter(this, "direction", updateDirection);
+        this._setter(this, "order", updateDirection);
+
+        this._setter(this, "justify", () => {
+            if (this.space !== "none") {
                 return;
             }
-            this.htmlElement.style.justifyContent = value;
+            const map = {"start": "", "center": "center", "end": "flex-end"};
+            this.htmlElement.style.justifyContent = map[this.justify];
         });
 
-        new Enum(this, "space", {"default": "", "around": "space-around", "between": "space-between", "evenly": "space-evenly"}, value => {
-            if (value !== "") {
-                this.htmlElement.style.justifyContent = value;
-            } else if (this.justify !== "default") {
+        this._setter(this, "space", () => {
+            if (this.space === "none") {
                 this.justify = this.justify;
-            } else {
-                this.justify = "default";
+                return;
             }
+            const map = {"none": "", "around": "space-around", "between": "space-between", "evenly": "space-evenly"};
+            this.htmlElement.style.justifyContent = map[this.space];
         });
+
+        this._setter(this, "align", () => {
+            const map = {"start": "", "center": "center", "end": "flex-end"};
+            this.htmlElement.style.alignItems = map[this.align];
+        });
+
+        Object.assign(this, style);
+    }
+
+    /** @returns {HTMLDivElement} */
+    _createHtmlElement() {
+        const element = document.createElement("div");
+        element.classList.add("dom-element");
+        return element;
     }
 }
 
-class DomFlexContainerBuilder extends DomElementBuilder {
+// Export it by default as function so that you don't need to use the new keyword
+/** @param {domFlexContainerStyleType} style @param {childrenType} children */
+export default (style = {}, children = []) => {
+    return new DomFlexContainer(style, children);
+};
 
-    constructor() {
-        super();
-        // The type of _domElement has to be updated, even though _createElement returns the correct type
-        /** @type {DomFlexContainer} */
-        this._domElement;
-    }
 
-    _createElement() {
-        const htmlElement = document.createElement("div");
-        htmlElement.style.display = "flex";
-        return new DomFlexContainer(htmlElement);
-    }
+/** @typedef {"row" | "column"} domFlexContainerDirectionType - The direction that it will use for placing the children next to each other */
+/** @typedef {"default" | "reverse"} domFlexContainerOrderType - Wether the children should be placed in a reverse order */
+/** @typedef {"start" | "center" | "end"} domFlexContainerJustifyType - Where the placement of the children should start from */
+/** @typedef {"none" | "between" | "around" | "evenly"} domFlexContainerSpaceType - The spacing between and around each child */
+/** @typedef {"start" | "center" | "end"} domFlexContainerAlignType - The alignment for the chidren, with row direction, this will affect the vertical alignment */
 
-    get directionRow() {
-        this._domElement.direction = "row";
-        return this;
-    }
-    get directionColumn() {
-        this._domElement.direction = "column";
-        return this;
-    }
-    get orderReverse() {
-        this._domElement.order = "reverse";
-        return this;
-    }
-    get justifyStart() {
-        this._domElement.justify = "start";
-        return this;
-    }
-    get justifyCenter() {
-        this._domElement.justify = "center";
-        return this;
-    }
-    get justifyEnd() {
-        this._domElement.justify = "start";
-        return this;
-    }
-    get spaceBetween() {
-        this._domElement.space = "between";
-        return this;
-    }
-    get spaceAround() {
-        this._domElement.space = "around";
-        return this;
-    }
-    get spaceEvenly() {
-        this._domElement.space = "evenly";
-        return this;
-    }
-    /* get stretch() { // Doesn't work unless the elements have flexGrow set
-        this._justifyContent = "stretch";
-        return this;
-    } */
-    get alignCenter() {
-        this._domElement.align = "center";
-        return this;
-    }
-    get alignEnd() {
-        this._domElement.align = "end";
-        return this;
-    }
+/**
+ * @typedef {Object} domFlexContainerStyleTypeExtra - The extended style type for flex containers
+ * @property {domFlexContainerDirectionType} direction
+ * @property {domFlexContainerOrderType} order
+ * @property {domFlexContainerJustifyType} justify
+ * @property {domFlexContainerSpaceType} space
+ * @property {domFlexContainerAlignType} align
+ */
 
-    /** @returns {DomFlexContainer} */
-    create(style = {}, children = []) {
-        return super.create(style, children);
-    }
-}
-
-export {
-    DomFlexContainer,
-    DomFlexContainerBuilder
-}
+/** 
+ * @typedef {styleType & domFlexContainerStyleTypeExtra} domFlexContainerStyleType
+ */

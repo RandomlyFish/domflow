@@ -1,34 +1,24 @@
-import {DomElement, DomElementBuilder} from "./DomElement";
+import {DomElement} from "./DomElement";
 
-export default class DomLayer extends DomElement {
+class DomLayer extends DomElement {
+    constructor(style, children) {
+        super(style, children);
 
-    constructor(htmlElement) {
-        super(htmlElement);
+        /** @type {colorsType} The color type of the element, which is affected by shade */
+        this.color = style.color || "none";
+    }
+
+    /** @returns {HTMLDivElement} */
+    _createHtmlElement() {
+        const element = document.createElement("div");
+        element.classList.add("dom-element");
+        element.classList.add("dom-layer");
+        return element;
     }
 }
 
-class DomLayerBuilder extends DomElementBuilder {
-
-    constructor() {
-        super();
-        // The type of _domElement has to be updated, even though _createElement returns the correct type
-        /** @type {DomLayer} */
-        this._domElement;
-    }
-
-    _createElement() {
-        const htmlElement = document.createElement("div");
-        htmlElement.classList.add("dom-layer");
-        return new DomLayer(htmlElement);
-    }
-
-    /** @returns {DomLayer} */
-    create(style = {}, children = []) {
-        return super.create(style, children);
-    }
-}
-
-export {
-    DomLayer,
-    DomLayerBuilder
-}
+// Export it by default as function so that you don't need to use the new keyword
+/** @param {styleType} style @param {childrenType} children */
+export default (style = {}, children = []) => {
+    return new DomLayer(style, children);
+};

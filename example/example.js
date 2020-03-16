@@ -1,16 +1,13 @@
-import dom from "../src/dom";
-import icons from "../src/icon_fonts/ioniconsV4";
-
 import {Jsdoc, Container, Layer, FlexContainer, Button, Toggle, Text} from "../index"; // Use "domflow" instead of "../index"
 import {IoniconsV4 as Icon} from "../index";
 
 // Creates an element used to add some vertical distance between some elements
 function createSpacer() {
-    return dom.container.create({height: "20px"});
+    return Container({height: "20px"});
 }
 
 // A container that is later added to the document's body
-const container = dom.container.create({width: "50%", height: "500px"}, () => {
+const container = Container({width: "50%", height: "500px"}, () => {
 
     // A button with a click handler
     const button = Button("Button", {height: "40px", width: "100px", color: "foreground"});

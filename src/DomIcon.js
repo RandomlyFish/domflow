@@ -1,36 +1,34 @@
-import {DomElement, DomElementBuilder} from "./DomElement";
+import {DomElement} from "./DomElement";
+import "./Jsdoc";
 
-export default class DomIcon extends DomElement {
+class DomIcon extends DomElement {
+    constructor(name, style, children) {
+        super(style, children);
 
-    constructor(htmlElement) {
-        super(htmlElement);
+        this.colorClassPrefixes = ["color-"];
 
-        this.colorClassPrefixes = ["color-"]; // TODO: extend color so that it uses the correct prefix
-        this.color = "foreground";
+        /** @type {colorsType} The color type of the element, which is affected by shade */
+        this.color = style.color || "foreground";
+    
+        /** @type {styleValueType} The css font size used for changing the size of the icon */
+        this.size = this._passThroughCss(this, "size", this.htmlElement.style, "fontSize");
+    }
+
+    /** @returns {HTMLElement} */
+    _createHtmlElement() {
+        const element = document.createElement("i");
+        element.classList.add("dom-element");
+        return element;
     }
 }
 
-class DomIconBuilder extends DomElementBuilder {
+// Export it by default as function so that you don't need to use the new keyword
+/** @param {string} text @param {domIconStyleType} style @param {childrenType} children */
+export default (name = "", style = {}, children = []) => {
+    return new DomIcon(name, style, children);
+};
 
-    constructor() {
-        super();
-        // The type of _domElement has to be updated, even though _createElement returns the correct type
-        /** @type {DomIcon} */
-        this._domElement;
-    }
-
-    _createElement() {
-        const htmlElement = document.createElement("i");
-        return new DomIcon(htmlElement);
-    }
-
-    /** @returns {DomIcon} */
-    create(style = {}, children = []) {
-        return super.create(style, children);
-    }
-}
-
+// Export the class as well so that it can be extended
 export {
-    DomIcon,
-    DomIconBuilder
+    DomIcon
 }
