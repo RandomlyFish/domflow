@@ -1,4 +1,4 @@
-import {Jsdoc, Container, Layer, FlexContainer, Button, Toggle, Text} from "../index"; // Use "domflow" instead of "../index"
+import {Jsdoc, Container, Layer, FlexContainer, Button, Toggle, Slider, Text, TextInput, Image} from "../index"; // Use "domflow" instead of "../index"
 import {IoniconsV4 as Icon} from "../index";
 
 // Creates an element used to add some vertical distance between some elements
@@ -10,15 +10,15 @@ function createSpacer() {
 const container = Container({width: "50%", height: "500px"}, () => {
 
     // A button with a click handler
-    const button = Button("Button", {height: "40px", width: "100px", color: "foreground"});
+    const button = Button("Button", {height: "40px", width: "100px", color: "primary"});
     button.onClick = () => {
         console.log("clicked button!");
     };
 
     // A button with an icon
-    Button("", {color: "foreground", width: "100px", height: "40px"}, () => {
+    Button("", {width: "100px", height: "40px"}, () => {
         // All icon names are listed when typing the string, so no need to memorize them
-        const icon = Icon("information-circle", {color: "background", size: "20px"});
+        const icon = Icon("information-circle", {size: "20px"});
         // The icon can be changed after it have been created
         icon.icon = "information-circle-outline";
     });
@@ -34,7 +34,7 @@ const container = Container({width: "50%", height: "500px"}, () => {
     createSpacer();
 
     // A flex container used for creating horizontal or vertical layouts
-    FlexContainer({height: "100px"}, () => {
+    FlexContainer({height: "100px", space: "between"}, () => {
         const colors = ["red", "green", "blue"]
         for (let i = 0; i < colors.length; i++) {
             Container({
@@ -46,14 +46,25 @@ const container = Container({width: "50%", height: "500px"}, () => {
         }
     });
 
+    Image("https://cdn2.downdetector.com/static/uploads/logo/Google-new_19.png");
+
+    const slider = Slider();
+    const sliderValueText = Text("1");
+
+    slider.onDrag = (value) => {
+        sliderValueText.text = value.toString();
+    }
+
+    TextInput();
+
     // A container that is centered
-    const centered = Container({anchor: 0.5, width: "100px", height: "100px", color: "foreground"}, () => {
-        Text("Centered container", {color: "background"});
+    const centered = Container({anchor: 0.5, width: "100px", height: "100px", shade: "light"}, () => {
+        Text("Centered container");
     });
 
-    // A container that is placed on top of any elements and doesn't recieve any click events, it's children does however
-    // Ideal for adding ui elements floating ontop of other elements
-    Layer({width: "100%", height: "100%"});
+    // A container that is placed on top of any child elements and doesn't recieve click events, it's children does however
+    // It's ideal for adding multiple ui elements which overlap other elements
+    Layer();
 });
 
 document.body.appendChild(container.htmlElement);

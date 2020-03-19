@@ -11,6 +11,12 @@ class DomButton extends DomElement {
         /** @type {function} The click handler for the element */
         this.onClick = this._passThroughCss(this, "onClick", this.htmlElement, "onclick");
 
+        /** @type {colorsType} The color type of the element, which is affected by shade */
+        this.color = style.color || "background";
+
+        /** @type {shadeType} The shade type of the element, which is affected by color */
+        this.shade = style.shade || "light";
+
         // Deselects the button after click
         this.htmlElement.addEventListener("mouseup", () => {
             this.htmlElement.blur();

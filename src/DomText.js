@@ -9,6 +9,9 @@ class DomText extends DomElement {
         /** @type {colorsType} The color type of the element, which is affected by shade */
         this.color = style.color || "foreground";
 
+        /** @type {string} The text string to display */
+        this.text = this._passThrough(this, "text", this.htmlElement, "textContent");
+
         if (text !== "") {
             this.htmlElement.textContent = text;
         }

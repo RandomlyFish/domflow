@@ -41,7 +41,7 @@ class DomToggle extends DomElement {
         this.checkbox = checkbox;
 
         const slider = document.createElement("span");
-        slider.classList.add("slider");
+        slider.classList.add("toggle-background");
 
         htmlElement.appendChild(checkbox);
         htmlElement.appendChild(slider);

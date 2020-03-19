@@ -1,6 +1,19 @@
 body {
     --input-hover-filter: contrast(90%) brightness(120%);
     --input-select-filter: contrast(90%) brightness(140%);
+
+    --toggle-background-width: 50px;
+    --toggle-background-height: 25px;
+
+    --toggle-handle-color: var(--color-background-dark);
+    --toggle-background-color: var(--color-foreground-light);
+    --toggle-background-enabled-color: var(--color-primary);
+
+    --slider-handle-color: var(--color-background);
+    --slider-background-color: var(--color-foreground);
+    --slider-fill-color: var(--color-secondary);
+
+    --text-input-padding: 8px;
 }
 
 /* BUTTON */
@@ -9,6 +22,7 @@ body {
     cursor: pointer;
     font-family : inherit;
     vertical-align: top;
+    color: var(--color-foreground);
 }
 
 .dom-element button:hover {
@@ -31,51 +45,138 @@ body {
 
 /* Container and background */
 .dom-element .toggle {
-    --toggle-handle-color: var(--color-foreground);
-    --toggle-background-color: var(--color-foreground-dark);
-    --toggle-background-enabled-color: var(--color-secondary);
-
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 25px;
+    width: var(--toggle-background-width);
+    height: var(--toggle-background-height);
 }
 
 /* Background (Don't ask me why the selector is for the div inside it) */
-.dom-element .slider {
+.dom-element .toggle-background {
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--color-foreground-dark);
+    background-color: var(--toggle-background-color);
     border-radius: 30px;
-    border: 2px solid #00000011;
+    /* border: 2px solid #00000022; */
     transition: all 0.15s;
 }
 
 /* Toggle handle */
-.dom-element .slider:before {
+.dom-element .toggle-background:before {
     position: absolute;
     content: "";
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     background-color: var(--toggle-handle-color);
-    border-radius: 25px;
+    border-radius: 22px;
     transition: all 0.15s;
-    top: -2px;
+    top: 1px;
+    left: 2px;
 }
 
 /* Hover */
-.dom-element input:hover + .slider {
+.dom-element input:hover + .toggle-background {
     filter: var(--input-hover-filter);
 }
 
 /* On checked */
-.dom-element input:checked + .slider {
+.dom-element input:checked + .toggle-background {
     background-color: var(--toggle-background-enabled-color);
 }
-.dom-element input:checked + .slider:before {
-    transform: translateX(22px);
+.dom-element input:checked + .toggle-background:before {
+    transform: translateX(24px);
+}
+
+/* SLIDER */
+.dom-element.slider { 
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 25px;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 0; /* iOS */
+    color: var(--slider-background-color);
+}
+
+.dom-element.slider:hover {
+    filter: var(--input-hover-filter);
+}
+
+.dom-element.slider:focus {
+    filter: var(--input-select-filter);
+    outline: 0;
+}
+
+/* Handle and fill color */
+.dom-element.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px; /* 1 */
+    height: 25px;
+    background: var(--slider-handle-color);
+    box-shadow: -100vw 0 0 100vw var(--slider-fill-color);
+    /* border: 2px solid #999; */ /* 1 */
+}
+
+.dom-element.slider::-moz-range-thumb {
+    background: var(--slider-handle-color);
+    height: 25px;
+    width: 15px;
+    /* border: 3px solid #999; */
+    border-radius: 0 !important;
+    box-shadow: -100vw 0 0 100vw var(--slider-fill-color);
+    box-sizing: border-box;
+}
+
+/* Handle */
+.dom-element.slider::-ms-thumb { 
+    background: var(--slider-handle-color);
+    /* border: 2px solid #999; */
+    height: 25px;
+    width: 15px;
+    box-sizing: border-box;
+}
+
+/* Fill */
+.dom-element.slider::-ms-fill-lower { 
+    background: var(--slider-fill-color);
+}
+
+.dom-element.slider::-ms-ticks-after { 
+    display: none; 
+}
+
+.dom-element.slider::-ms-ticks-before { 
+    display: none; 
+}
+
+.dom-element.slider::-moz-range-track {
+    height: 25px;
+    background: var(--color-background-light);
+}
+
+.dom-element.slider::-ms-track { 
+    background: var(--color-background-light);
+    color: transparent;
+    height: 25px;
+    border: none;
+}
+
+.dom-element.slider::-webkit-slider-runnable-track {
+    background: var(--color-background-light);
+}
+
+/* TEXT INPUT */
+input[type=text].dom-element {
+    outline: 0;
+    border: 0;
+    background-color: var(--color-background-light);
+    color: var(--color-foreground);
+    padding: var(--text-input-padding);
+    font-family: inherit;
 }
