@@ -20,7 +20,7 @@ class DomText extends DomElement {
     /** @returns {HTMLParagraphElement} */
     _createHtmlElement() {
         const element = document.createElement("p");
-        element.classList.add("dom-element");
+        element.classList.add("df");
         return element;
     }
 }

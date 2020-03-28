@@ -30,7 +30,7 @@ class DomButton extends DomElement {
     /** @returns {HTMLButtonElement} */
     _createHtmlElement() {
         const element = document.createElement("button");
-        element.classList.add("dom-element");
+        element.classList.add("df");
         return element;
     }
 }

@@ -32,7 +32,7 @@ class DomToggle extends DomElement {
     /** @returns {HTMLLabelElement} */
     _createHtmlElement() {
         const htmlElement = document.createElement("label");
-        htmlElement.classList.add("dom-element");
+        htmlElement.classList.add("df");
         htmlElement.classList.add("toggle");
 
         const checkbox = document.createElement("input");

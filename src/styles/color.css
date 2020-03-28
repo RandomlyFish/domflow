@@ -31,111 +31,111 @@ body {
 }
 
 /* Element color */
-.dom-element.color-none {
+.df.color-none {
     color: transparent;
 }
 
-.dom-element.color-foreground {
+.df.color-foreground {
     color: var(--color-foreground);
 }
-.dom-element.color-foreground-light {
+.df.color-foreground-light {
     color: var(--color-foreground-light);
 }
-.dom-element.color-foreground-dark {
+.df.color-foreground-dark {
     color: var(--color-foreground-dark);
 }
 
-.dom-element.color-background {
+.df.color-background {
     color: var(--color-background);
 }
-.dom-element.color-background-light {
+.df.color-background-light {
     color: var(--color-background-light);
 }
-.dom-element.color-background-dark {
+.df.color-background-dark {
     color: var(--color-background-dark);
 }
 
-.dom-element.color-primary {
+.df.color-primary {
     color: var(--color-primary);
 }
-.dom-element.color-primary-light {
+.df.color-primary-light {
     color: var(--color-primary-light);
 }
-.dom-element.color-primary-dark {
+.df.color-primary-dark {
     color: var(--color-primary-dark);
 }
 
-.dom-element.color-secondary {
+.df.color-secondary {
     color: var(--color-secondary);
 }
-.dom-element.color-secondary-light {
+.df.color-secondary-light {
     color: var(--color-secondary-light);
 }
-.dom-element.color-secondary-dark {
+.df.color-secondary-dark {
     color: var(--color-secondary-dark);
 }
 
-.dom-element.color-accent {
+.df.color-accent {
     color: var(--color-accent);
 }
-.dom-element.color-accent-light {
+.df.color-accent-light {
     color: var(--color-accent-light);
 }
-.dom-element.color-accent-dark {
+.df.color-accent-dark {
     color: var(--color-accent-dark);
 }
 
 /* Element background color */
-.dom-element.bg-color-none {
+.df.bg-color-none {
     background-color: transparent;
 }
 
-.dom-element.bg-color-foreground {
+.df.bg-color-foreground {
     background-color: var(--color-foreground);
 }
-.dom-element.bg-color-foreground-light {
+.df.bg-color-foreground-light {
     background-color: var(--color-foreground-light);
 }
-.dom-element.bg-color-foreground-dark {
+.df.bg-color-foreground-dark {
     background-color: var(--color-foreground-dark);
 }
 
-.dom-element.bg-color-background {
+.df.bg-color-background {
     background-color: var(--color-background);
 }
-.dom-element.bg-color-background-light {
+.df.bg-color-background-light {
     background-color: var(--color-background-light);
 }
-.dom-element.bg-color-background-dark {
+.df.bg-color-background-dark {
     background-color: var(--color-background-dark);
 }
 
-.dom-element.bg-color-primary {
+.df.bg-color-primary {
     background-color: var(--color-primary);
 }
-.dom-element.bg-color-primary-light {
+.df.bg-color-primary-light {
     background-color: var(--color-primary-light);
 }
-.dom-element.bg-color-primary-dark {
+.df.bg-color-primary-dark {
     background-color: var(--color-primary-dark);
 }
 
-.dom-element.bg-color-secondary {
+.df.bg-color-secondary {
     background-color: var(--color-secondary);
 }
-.dom-element.bg-color-secondary-light {
+.df.bg-color-secondary-light {
     background-color: var(--color-secondary-light);
 }
-.dom-element.bg-color-secondary-dark {
+.df.bg-color-secondary-dark {
     background-color: var(--color-secondary-dark);
 }
 
-.dom-element.bg-color-accent {
+.df.bg-color-accent {
     background-color: var(--color-accent);
 }
-.dom-element.bg-color-accent-light {
+.df.bg-color-accent-light {
     background-color: var(--color-accent-light);
 }
-.dom-element.bg-color-accent-dark {
+.df.bg-color-accent-dark {
     background-color: var(--color-accent-dark);
 }

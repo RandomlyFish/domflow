@@ -1,4 +1,4 @@
-import {Jsdoc, Container, Layer, FlexContainer, Button, Toggle, Slider, Text, TextInput, Image} from "../index"; // Use "domflow" instead of "../index"
+import {Jsdoc, Container, Layer, FlexContainer, Button, Toggle, Slider, Text, TextInput, Image, Video} from "../index"; // Use "domflow" instead of "../index"
 import {IoniconsV4 as Icon} from "../index";
 
 // Creates an element used to add some vertical distance between some elements
@@ -7,7 +7,7 @@ function createSpacer() {
 }
 
 // A container that is later added to the document's body
-const container = Container({width: "50%", height: "500px"}, () => {
+const container = Container({width: "50%", height: "100vh"}, () => {
 
     // A button with a click handler
     const button = Button("Button", {height: "40px", width: "100px", color: "primary"});
@@ -46,16 +46,28 @@ const container = Container({width: "50%", height: "500px"}, () => {
         }
     });
 
-    Image("https://cdn2.downdetector.com/static/uploads/logo/Google-new_19.png");
+    const image = Image("https://cdn2.downdetector.com/static/uploads/logo/Google-new_19.png");
+    image.htmlElement.style.maxWidth = "100%";
 
-    const slider = Slider();
-    const sliderValueText = Text("1");
+    Container({}, () => {
+        const slider = Slider();
+        const sliderValueText = Text("1");
 
-    slider.onDrag = (value) => {
-        sliderValueText.text = value.toString();
-    }
+        slider.onDrag = (value) => {
+            sliderValueText.text = value.toString();
+        }
+    });
 
-    TextInput();
+    Container({}, () => {
+        TextInput();
+    });
+
+    const video = Video("", {classes: ["testVideo"]});
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.setSources(["http://techslides.com/demos/sample-videos/small.webm", "http://techslides.com/demos/sample-videos/small.ogv"]);
+    video.htmlElement.style.maxWidth = "100%";
 
     // A container that is centered
     const centered = Container({anchor: 0.5, width: "100px", height: "100px", shade: "light"}, () => {

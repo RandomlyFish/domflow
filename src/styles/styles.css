@@ -5,24 +5,33 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.dom-element {
+.df {
     position: relative;
+    display: inline-block;
 }
 
-.dom-element p {
+div.df {
+    display: block;
+}
+
+.df.flex {
+    display: flex;
+}
+
+p.df {
     margin-block-start: 0px;
     margin-block-end: 0px;
 }
 
 /* ANCHORED */
-.dom-element .anchored {
+.df.anchored {
     position: absolute;
     left: 0;
     top: 0;
 }
 
 /* LAYER */
-.dom-element .dom-layer {
+.df.layer {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -32,6 +41,6 @@ body {
 }
 
 /* Applies the the layer's children */
-.dom-element .dom-layer * { 
+.df.layer * { 
     pointer-events: auto;
 }

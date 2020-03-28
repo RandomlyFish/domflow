@@ -17,7 +17,7 @@ class DomIcon extends DomElement {
     /** @returns {HTMLElement} */
     _createHtmlElement() {
         const element = document.createElement("i");
-        element.classList.add("dom-element");
+        element.classList.add("df");
         return element;
     }
 }

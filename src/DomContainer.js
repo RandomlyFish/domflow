@@ -1,17 +1,20 @@
 import {DomElement} from "./DomElement";
 
-class DomLayer extends DomElement {
+class DomContainer extends DomElement {
     constructor(style, children) {
         super(style, children);
+    }
 
-        /** @type {colorsType} The color type of the element, which is affected by shade */
-        this.color = style.color || "none";
+    getDefaultStyles() {
+        return {
+            display: "block"
+        }
     }
 
     /** @returns {HTMLDivElement} */
     _createHtmlElement() {
         const element = document.createElement("div");
-        element.classList.add("df", "layer");
+        element.classList.add("df");
         return element;
     }
 }
@@ -19,5 +22,5 @@ class DomLayer extends DomElement {
 // Export it by default as function so that you don't need to use the new keyword
 /** @param {styleType} style @param {childrenType} children */
 export default (style = {}, children = []) => {
-    return new DomLayer(style, children);
+    return new DomContainer(style, children);
 };

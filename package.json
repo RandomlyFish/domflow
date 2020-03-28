@@ -1,7 +1,7 @@
 {
   "name": "domflow",
-  "version": "1.0.9",
-  "description": "A Node framework for creating html structure and layout in javascript",
+  "version": "1.0.10",
+  "description": "A Node library for creating html structure and layout in javascript",
   "main": "index.js",
   "dependencies": {
     "@randomlyfish/utils": "^0.1.4"

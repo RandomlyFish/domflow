@@ -39,7 +39,7 @@ class DomSlider extends DomElement {
     /** @returns {HTMLInputElement} */
     _createHtmlElement() {
         const element = document.createElement("input");
-        element.classList.add("dom-element", "slider");
+        element.classList.add("df", "slider");
         element.type = "range";
         element.min = 0;
         element.max = 1;

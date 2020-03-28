@@ -4,8 +4,6 @@ class DomFlexContainer extends DomElement {
     constructor(style, children) {
         super(style, children);
 
-        this.htmlElement.style.display = "flex";
-
         const updateDirection = () => {
             if (this.direction === "row" && this.order === "default") {
                 this.htmlElement.style.flexDirection = "";
@@ -61,10 +59,20 @@ class DomFlexContainer extends DomElement {
         Object.assign(this, style);
     }
 
+    getDefaultStyles() {
+        return {
+            display: "flex"
+        }
+    }
+
+    _getInlineDisplay() {
+        return "inline-flex";
+    }
+
     /** @returns {HTMLDivElement} */
     _createHtmlElement() {
         const element = document.createElement("div");
-        element.classList.add("dom-element");
+        element.classList.add("df", "flex");
         return element;
     }
 }

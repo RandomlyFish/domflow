@@ -8,7 +8,7 @@ class DomTextInput extends DomElement {
     /** @returns {HTMLInputElement} */
     _createHtmlElement() {
         const element = document.createElement("input");
-        element.classList.add("dom-element");
+        element.classList.add("df");
         element.type = "text";
         return element;
     }

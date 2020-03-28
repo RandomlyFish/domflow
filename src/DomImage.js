@@ -2,7 +2,7 @@ import {DomElement} from "./DomElement";
 
 class DomImage extends DomElement {
     constructor(source, style, children) {
-        super(source, style, children);
+        super(style, children);
 
         /** @type {HTMLImageElement} */
         this.htmlElement;
@@ -21,7 +21,7 @@ class DomImage extends DomElement {
     /** @returns {HTMLImageElement} */
     _createHtmlElement() {
         const element = document.createElement("img");
-        element.classList.add("dom-element");
+        element.classList.add("df");
         return element;
     }
 }

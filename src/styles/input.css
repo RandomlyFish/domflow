@@ -17,7 +17,7 @@ body {
 }
 
 /* BUTTON */
-.dom-element button {
+.df button {
     border: none;
     cursor: pointer;
     font-family : inherit;
@@ -25,13 +25,13 @@ body {
     color: var(--color-foreground);
 }
 
-.dom-element button:hover {
+.df button:hover {
     outline: 0;
     filter: var(--input-hover-filter);
     transition: 0.15s;
 }
 
-.dom-element button:focus {
+.df button:focus {
     outline: 0;
     filter: var(--input-select-filter);
     transition: 0s;
@@ -39,12 +39,12 @@ body {
 
 /* TOGGLE */
 /* Hide default input */
-.dom-element .toggle input {
+.df .toggle input {
     display: none;
 }
 
 /* Container and background */
-.dom-element .toggle {
+.df .toggle {
     position: relative;
     display: inline-block;
     width: var(--toggle-background-width);
@@ -52,7 +52,7 @@ body {
 }
 
 /* Background (Don't ask me why the selector is for the div inside it) */
-.dom-element .toggle-background {
+.df .toggle-background {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -66,7 +66,7 @@ body {
 }
 
 /* Toggle handle */
-.dom-element .toggle-background:before {
+.df .toggle-background:before {
     position: absolute;
     content: "";
     width: 22px;
@@ -79,20 +79,20 @@ body {
 }
 
 /* Hover */
-.dom-element input:hover + .toggle-background {
+.df input:hover + .toggle-background {
     filter: var(--input-hover-filter);
 }
 
 /* On checked */
-.dom-element input:checked + .toggle-background {
+.df input:checked + .toggle-background {
     background-color: var(--toggle-background-enabled-color);
 }
-.dom-element input:checked + .toggle-background:before {
+.df input:checked + .toggle-background:before {
     transform: translateX(24px);
 }
 
 /* SLIDER */
-.dom-element.slider { 
+.df.slider { 
     margin: auto;
     -webkit-appearance: none;
     position: relative;
@@ -104,17 +104,17 @@ body {
     color: var(--slider-background-color);
 }
 
-.dom-element.slider:hover {
+.df.slider:hover {
     filter: var(--input-hover-filter);
 }
 
-.dom-element.slider:focus {
+.df.slider:focus {
     filter: var(--input-select-filter);
     outline: 0;
 }
 
 /* Handle and fill color */
-.dom-element.slider::-webkit-slider-thumb {
+.df.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 15px; /* 1 */
     height: 25px;
@@ -123,7 +123,7 @@ body {
     /* border: 2px solid #999; */ /* 1 */
 }
 
-.dom-element.slider::-moz-range-thumb {
+.df.slider::-moz-range-thumb {
     background: var(--slider-handle-color);
     height: 25px;
     width: 15px;
@@ -134,7 +134,7 @@ body {
 }
 
 /* Handle */
-.dom-element.slider::-ms-thumb { 
+.df.slider::-ms-thumb { 
     background: var(--slider-handle-color);
     /* border: 2px solid #999; */
     height: 25px;
@@ -143,40 +143,41 @@ body {
 }
 
 /* Fill */
-.dom-element.slider::-ms-fill-lower { 
+.df.slider::-ms-fill-lower { 
     background: var(--slider-fill-color);
 }
 
-.dom-element.slider::-ms-ticks-after { 
+.df.slider::-ms-ticks-after { 
     display: none; 
 }
 
-.dom-element.slider::-ms-ticks-before { 
+.df.slider::-ms-ticks-before { 
     display: none; 
 }
 
-.dom-element.slider::-moz-range-track {
+.df.slider::-moz-range-track {
     height: 25px;
     background: var(--color-background-light);
 }
 
-.dom-element.slider::-ms-track { 
+.df.slider::-ms-track { 
     background: var(--color-background-light);
     color: transparent;
     height: 25px;
     border: none;
 }
 
-.dom-element.slider::-webkit-slider-runnable-track {
+.df.slider::-webkit-slider-runnable-track {
     background: var(--color-background-light);
 }
 
 /* TEXT INPUT */
-input[type=text].dom-element {
+input[type=text].df {
     outline: 0;
     border: 0;
     background-color: var(--color-background-light);
     color: var(--color-foreground);
     padding: var(--text-input-padding);
     font-family: inherit;
+    vertical-align: top;
 }
