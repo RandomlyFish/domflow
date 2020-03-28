@@ -1,3 +1,7 @@
+// Required for code completion and jsdoc to work properly
+require("./src/DomElement");
+require("./src/Jsdoc");
+
 export {default as Container} from "./src/DomContainer";
 export {default as Layer} from "./src/DomLayer";
 export {default as FlexContainer} from "./src/DomFlexContainer";
