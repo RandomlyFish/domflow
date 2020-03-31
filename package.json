@@ -1,6 +1,6 @@
 {
   "name": "domflow",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A Node library for creating html structure and layout in javascript",
   "main": "index.js",
   "dependencies": {

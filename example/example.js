@@ -49,23 +49,20 @@ const container = Container({width: "50%", height: "100vh"}, () => {
     const image = Image("https://cdn2.downdetector.com/static/uploads/logo/Google-new_19.png");
     image.htmlElement.style.maxWidth = "100%";
 
+    // A container with a slider and a text that updates with the slider
     Container({}, () => {
-        const slider = Slider();
-        const sliderValueText = Text("1");
+        const slider = Slider({value: 5, step: 1, max: 10});
+        const sliderValueText = Text(slider.value);
 
         slider.onDrag = (value) => {
-            sliderValueText.text = value.toString();
+            sliderValueText.text = value;
         }
     });
 
-    Container({}, () => {
-        TextInput();
-    });
+    // A text input field that is placed on it's own line
+    TextInput({display: "block"});
 
-    const video = Video("", {classes: ["testVideo"]});
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
+    const video = Video("", {classes: ["testVideo"], autoplay: true, muted: true, loop: true});
     video.setSources(["http://techslides.com/demos/sample-videos/small.webm", "http://techslides.com/demos/sample-videos/small.ogv"]);
     video.htmlElement.style.maxWidth = "100%";
 

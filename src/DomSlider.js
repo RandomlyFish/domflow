@@ -1,6 +1,7 @@
 import {DomElement} from "./DomElement";
 
 class DomSlider extends DomElement {
+    /** @param {domSliderStyleType} style */
     constructor(style) {
         super(style);
 
@@ -15,14 +16,14 @@ class DomSlider extends DomElement {
 
         this.htmlElement.oninput = (e) => {
             if (this.onDrag !== undefined) {
-                this.onDrag(this.htmlElement.value);
+                this.onDrag(this.value);
             }
         }
 
         // Only called if the value had been changed after releasing
         this.htmlElement.onchange = (e) => {
             if (this.onRelease !== undefined) {
-                this.onRelease(this.htmlElement.value);
+                this.onRelease(this.value);
             }
         }
 
@@ -34,6 +35,40 @@ class DomSlider extends DomElement {
         this.htmlElement.addEventListener("mouseleave", () => {
             this.htmlElement.blur();
         });
+
+        Object.assign(this, style); // TODO: Come up with a solution that doesn't require this to be called twice
+    }
+
+    /** @type {number} The current value for the slider */
+    get value() {
+        return parseFloat(this.htmlElement.value);
+    }
+    set value(value) {
+        this.htmlElement.value = value.toString();
+    }
+
+    /** @type {number} The value for the slider when the handle is all the way to the left */
+    get min() {
+        return parseFloat(this.htmlElement.getAttribute("min"));
+    }
+    set min(value) {
+        this.htmlElement.setAttribute("min", value);
+    }
+
+    /** @type {number} The value for the slider whe the handle is all the way to the right */
+    get max() {
+        return parseFloat(this.htmlElement.getAttribute("max"));
+    }
+    set max(value) {
+        this.htmlElement.setAttribute("max", value);
+    }
+
+    /** @type {number} The smallest amount that value can change when the handle is moved */
+    get step() {
+        return parseFloat(this.htmlElement.getAttribute("step"));
+    }
+    set step(value) {
+        this.htmlElement.setAttribute("step", value);
     }
 
     /** @returns {HTMLInputElement} */
@@ -49,7 +84,19 @@ class DomSlider extends DomElement {
 }
 
 // Export it by default as function so that you don't need to use the new keyword
-/** @param {styleType} style */
+/** @param {domSliderStyleType} style */
 export default (style = {}) => {
     return new DomSlider(style);
 };
+
+/**
+ * @typedef {Object} domSliderStyleTypeExtra - The extended style type for video elements
+ * @property {number} value - The current value for the slider
+ * @property {number} min - The value for the slider when the handle is all the way to the left
+ * @property {number} max - The value for the slider whe the handle is all the way to the right
+ * @property {number} step - The smallest amount that value can change when the handle is moved
+ */
+
+/** 
+ * @typedef {styleType & domSliderStyleTypeExtra} domSliderStyleType
+ */

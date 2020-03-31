@@ -1,7 +1,7 @@
 import {DomElement} from "./DomElement";
 
 class DomVideo extends DomElement {
-    /** @param {videoSourceType | videoSourceType[]} source @param {styleType} style */
+    /** @param {videoSourceType | videoSourceType[]} source @param {domVideoStyleType} style */
     constructor(source, style) {
         super(style);
 
@@ -24,10 +24,14 @@ class DomVideo extends DomElement {
 
         /** @type {boolean} used to disable the sounds for the video */
         this.muted = this._passThrough(this, "muted", this.htmlElement, "muted");
+
+        Object.assign(this, style); // TODO: Come up with a solution that doesn't require this to be called twice
     }
 
     /** @param {videoSourceType | videoSourceType[]} sources */
     setSources(sources) {
+        this.removeSources();
+
         const typeForExtensions = {
             "webm": "video/webm",
             "mp4": "video/mp4",
@@ -49,10 +53,14 @@ class DomVideo extends DomElement {
     
             this.htmlElement.appendChild(sourceElement);
         }
+
+        this.htmlElement.load();
     }
 
     removeSources() {
-        this.htmlElement.childNodes.forEach(child => {
+        const children = Array.from(this.htmlElement.childNodes);
+        // Using forEach directly on the childNodes when removing them does not work properly
+        children.forEach(child => {
             if (child.tagName === "SOURCE") {
                 this.htmlElement.removeChild(child);
             }
@@ -68,7 +76,19 @@ class DomVideo extends DomElement {
 }
 
 // Export it by default as function so that you don't need to use the new keyword
-/** @param {videoSourceType | videoSourceType[]} source @param {styleType} style */
+/** @param {videoSourceType | videoSourceType[]} source @param {domVideoStyleType} style */
 export default (source, style = {}) => {
     return new DomVideo(source, style);
 };
+
+/**
+ * @typedef {Object} domVideoStyleTypeExtra - The extended style type for video elements
+ * @property {boolean} controls - Used to enable controls for the video element
+ * @property {boolean} autoplay - Used to make the video start as soon as it's source is loaded
+ * @property {boolean} loop - Used to make the video restart automatically when it ends
+ * @property {boolean} muted - Used to disable the sounds for the video
+ */
+
+/** 
+ * @typedef {styleType & domVideoStyleTypeExtra} domVideoStyleType
+ */

@@ -95,7 +95,6 @@ body {
 .df.slider { 
     margin: auto;
     -webkit-appearance: none;
-    position: relative;
     overflow: hidden;
     height: 25px;
     width: 200px;

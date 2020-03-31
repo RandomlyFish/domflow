@@ -38,7 +38,7 @@ class DomElement {
             }
 
             let colorClass = this.colorClassPrefixes[0] + this.color;
-            if (this.shade !== "normal") {
+            if (this.shade !== "normal" && this.color !== "none") {
                 colorClass += "-" + this.shade;
             }
             this.classes.push(colorClass);
@@ -87,7 +87,7 @@ class DomElement {
 
         Object.assign(this, style);
 
-        this._addChildren(children); // TODO: Make these as functions on dom
+        this.addChildren(children); // TODO: Make these as functions on dom, maybe...
         this._addToParent();
     }
 
@@ -145,6 +145,65 @@ class DomElement {
         }
     }
 
+    /** 
+     * Add a single child as the last child for this element
+     * @param {DomElement} child 
+     */
+    addChild(child) {
+        this.htmlElement.appendChild(child.htmlElement);
+    }
+
+    /** 
+     * Add a single child as the last child for this element
+     * @param {DomElement} child - A new child
+     */
+    addChild(child) {
+        this.htmlElement.appendChild(child.htmlElement);
+    }
+
+    /** 
+     * Add a single child before an existing child of the element
+     * @param {DomElement} child - A new child
+     * @param {DomElement} existingChild - A child that have already been added to the element
+     */
+    addChildBefore(child, existingChild) {
+        if (existingChild.htmlElement.parentElement !== this.htmlElement) {
+            throw "Unable to add child before, the provided existingChild is not a child of the element";
+        }
+        this.htmlElement.insertBefore(child.htmlElement, existingChild.htmlElement);
+    }
+
+    /** 
+     * Add a single child after an existing child of the element
+     * @param {DomElement} child - A new child
+     * @param {DomElement} existingChild - A child that have already been added to the element
+     */
+    addChildAfter(child, existingChild) {
+        if (existingChild.htmlElement.parentElement !== this.htmlElement) {
+            throw "Unable to add child after, the provided existingChild is not a child of the element";
+        }
+        if (existingChild.htmlElement.nextSibling) {
+            this.htmlElement.insertBefore(child.htmlElement, existingChild.htmlElement.nextSibling);
+        } else {
+            this.addChild(child);
+        }
+    }
+
+    /** @param {childrenType} children */
+    addChildren(children = []) {
+        domManager._bindParent(this.htmlElement);
+
+        if (Array.isArray(children) === true) {
+            for (let child of children) {
+                this.addChild(child);
+            }
+        } else if (typeof children === "function") {
+            children();
+        }
+
+        domManager._unbindParent(this.htmlElement);
+    }
+
     _getInlineDisplay() {
         return "inline-block";
     }
@@ -154,20 +213,6 @@ class DomElement {
         const element = document.createElement("div");
         element.classList.add("df");
         return element;
-    }
-
-    _addChildren(children = []) {
-        domManager._bindParent(this.htmlElement);
-
-        if (Array.isArray(children) === true) {
-            for (let child of children) {
-                this.htmlElement.appendChild(child.htmlElement);
-            }
-        } else if (typeof children === "function") {
-            children();
-        }
-
-        domManager._unbindParent(this.htmlElement);
     }
 
     _addToParent() {

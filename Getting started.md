@@ -99,7 +99,6 @@ Create an index.html and add:
 As well as an index.js and add:
 
 ``` javascript
-// Jsdoc is important as it gives you documentation when using the various components
 import {Container, Layer, FlexContainer, Button, Toggle, Slider, Text, TextInput, Image, Video} from "domflow";
 // IoniconsV4 is currently the only support icon font, but there will be more
 import {IoniconsV4 as Icon} from "domflow";
